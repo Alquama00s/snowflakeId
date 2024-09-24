@@ -15,4 +15,11 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <distributionManagement>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/Alquama00s/snowflakeId</url>
+		</repository>
+	</distributionManagement>
 </project>

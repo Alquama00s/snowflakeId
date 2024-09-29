@@ -1,0 +1,7 @@
+com/alquama00s/snowflakeid/constants/Constants.class
+com/alquama00s/snowflakeid/exceptions/InvalidMachineId.class
+com/alquama00s/snowflakeid/SF.class
+com/alquama00s/snowflakeid/SnowFlakeBuilder.class
+com/alquama00s/snowflakeid/App.class
+com/alquama00s/snowflakeid/SnowFlake.class
+com/alquama00s/snowflakeid/exceptions/InvalidBitConfiguration.class

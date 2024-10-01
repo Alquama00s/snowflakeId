@@ -1,12 +1,16 @@
 package com.alquama00s.snowflakeid;
 
+import com.alquama00s.snowflakeid.exceptions.SnowFlakeExpired;
 import com.alquama00s.snowflakeid.utils.BitUtills;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @AllArgsConstructor
+@Getter
 public class SnowFlake {
 
 
@@ -21,9 +25,8 @@ public class SnowFlake {
     private final long machineId;
 
 
-    public synchronized long nextId() throws InterruptedException {
-        var currentTs =  ZonedDateTime.now(ZoneId.of("UTC")).toInstant().toEpochMilli()/(timeUnit - startTs);
-
+    public synchronized long nextId() throws InterruptedException,SnowFlakeExpired {
+        var currentTs =  ZonedDateTime.now(ZoneId.of("UTC")).toInstant().toEpochMilli()/timeUnit - startTs;
         if(this.currTs < currentTs) {
             this.currTs = currentTs;
             this.currSequence = 0;
@@ -37,17 +40,18 @@ public class SnowFlake {
                 Thread.sleep(sleepDur);
             }
         }
-        if (BitUtills.getMaxValueFromBitLen(timeBitLen) < this.currTs) {
-            return 0;
+        if (this.currTs > BitUtills.getMaxValueFromBitLen(timeBitLen)) {
+            throw SnowFlakeExpired.detailedException(this);
         }
 
         return currentId();
     }
 
     public long currentId(){
-        return this.currTs<<(this.sequenceBitLen + this.machineIdBitLen) +
-                this.machineId<<(this.sequenceBitLen) +
+        return (this.currTs<<(this.sequenceBitLen + this.machineIdBitLen))+
+                (this.machineId<<(this.sequenceBitLen))+
                 this.currSequence;
+
     }
 
 }

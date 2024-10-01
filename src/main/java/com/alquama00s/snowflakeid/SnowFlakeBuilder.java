@@ -21,7 +21,7 @@ public class SnowFlakeBuilder {
     private long machineId;
     private boolean timeConfig = false;
 
-    private SnowFlakeBuilder(){}
+    public SnowFlakeBuilder(){}
 
     public SnowFlakeBuilder configureBits(
         long timeBitLen,
@@ -50,13 +50,14 @@ public class SnowFlakeBuilder {
     }
 
     public SnowFlakeBuilder configureTime(long timeUnit,int startYear){
-        return configureTime(timeUnit, startYear,Month.JANUARY,0);
+        return configureTime(timeUnit, startYear,Month.JANUARY,1);
     }
 
 
     public SnowFlakeBuilder setMachineId(long machineId) throws InvalidMachineId {
-        if(machineId > BitUtills.getMaxValueFromBitLen(machineIdBitLen)){
-            throw new InvalidMachineId();
+        var maxAllowed = BitUtills.getMaxValueFromBitLen(machineIdBitLen);
+        if(machineId > maxAllowed){
+            throw new InvalidMachineId(maxAllowed,machineIdBitLen,machineId);
         }
         this.machineId = machineId;
         return this;
@@ -64,7 +65,7 @@ public class SnowFlakeBuilder {
 
     public SnowFlake build() throws InvalidMachineId {
         if(machineId==0){
-            throw new InvalidMachineId();
+            throw InvalidMachineId.zeroMachineId();
         }
         if(!timeConfig){
             configureTime(10,2024);

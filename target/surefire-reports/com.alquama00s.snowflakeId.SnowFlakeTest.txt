@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.alquama00s.snowflakeId.SnowFlakeTest
+-------------------------------------------------------------------------------
+Tests run: 74, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.095 s -- in com.alquama00s.snowflakeId.SnowFlakeTest

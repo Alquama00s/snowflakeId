@@ -1,6 +1,6 @@
-/Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/App.java
+/Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/exceptions/SnowFlakeExpired.java
 /Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/SnowFlakeBuilder.java
-/Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/SF.java
+/Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/utils/BitUtills.java
 /Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/exceptions/InvalidMachineId.java
 /Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/SnowFlake.java
 /Users/commandcenter/Workspace/snowflakeId/src/main/java/com/alquama00s/snowflakeid/constants/Constants.java
